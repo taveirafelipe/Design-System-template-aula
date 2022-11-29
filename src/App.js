@@ -1,5 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { theme } from "./theme";
+import Card from "./components/Card";
+import Card2 from "./components/Card2";
 
 export default function App() {
   const [users, setUsers] = useState([]);
@@ -22,9 +26,10 @@ export default function App() {
   };
 
   return (
-    <>
-      <h1>Me apague quando for iniciar!</h1>
-      <p>Chame o Card aqui!</p>
-    </>
+    <ChakraProvider theme={theme}>
+      {users.map((user) => {
+        return <Card2 key={user.id} user={user} />;
+      })}
+    </ChakraProvider>
   );
 }
